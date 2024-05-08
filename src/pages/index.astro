@@ -1,35 +1,51 @@
 ---
 // This area is called the "Component Script" section, sectioned off by the "Code Fence".
 
+import Main from "../layouts/Main.astro";
+
 const profilePicture =
   "https://images.squarespace-cdn.com/content/v1/5ab93b30e2ccd1ad66c6a6d6/1526077627930-ROUX8JGVBZAKQN1ZVNC2/most%2Binteresting%2Bman.jpg?format=1000w";
 ---
 
 <!-- This area is called the "Component Template" section. -->
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <div>
-      <img
-        src={profilePicture}
-        alt="Twitter Photo"
-        width="750px"
-        height="517px"
-      />
-      <div>
-        <h1>The Most Interesting Dude</h1>
-        <h2>Stay Thirsty My Friends</h2>
-        <p>
-          Telling stories while weaving in life's lessons for the younger
-          generation.
-        </p>
-      </div>
+<Main>
+  <div class="profile">
+    <img
+      class="profile-picture"
+      src={profilePicture}
+      alt="Twitter Photo"
+      width="100px"
+      height="100px"
+    />
+    <div class="profile-details">
+      <h1>The Most Interesting Dude</h1>
+      <h2>Stay Thirsty My Friends</h2>
+      <p>
+        Telling stories while weaving in life's lessons for the younger
+        generation.
+      </p>
     </div>
-  </body>
-</html>
+  </div>
+</Main>
+
+<style>
+  .profile {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 1rem 0 3rem 0;
+  }
+
+  .profile-details {
+    flex: 1 0 300px;
+  }
+
+  .profile-details > h1 {
+    margin-top: 0;
+  }
+
+  .profile-picture {
+    border-radius: 50%;
+    margin: 0 2rem 1rem 0;
+  }
+</style>
