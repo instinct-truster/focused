@@ -1,6 +1,8 @@
 body {
   font-family: "Inter", sans-serif;
-  padding: 0 0.5rem; /* Additional body style */
+  padding: 0 0.5rem;
+  color: var(--grey-600);
+  background: var(--background);
 }
 
 h1 {
@@ -20,4 +22,17 @@ main {
   margin: auto;
 }
 
-/* search "Independent Astro Components" to return to where I left off */
+html {
+  --background: white;
+  --grey-200: #222222;
+  --grey-400: #444444;
+  --grey-600: #333333;
+  --grey-900: #111111;
+}
+html.dark {
+  --background: black;
+  --grey-200: #eaeaea;
+  --grey-400: #acacac;
+  --grey-600: #ffffff;
+  --grey-900: #fafafa;
+}
