@@ -2,7 +2,7 @@
 
 ---
 
-<button aria-label="Theme toggler">
+<button aria-label="Theme toggler" data-theme-toggle="">
   <svg width="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path
       class="sun"
@@ -48,13 +48,17 @@
 </style>
 
 <script>
-  const DARK_THEME_CLASS = "dark";
-  const toggle = document.querySelector("button");
-  const rootEl = document.documentElement;
+  const toggle = document.querySelector("[data-theme-toggle]");
 
   if (toggle) {
     toggle.addEventListener("click", () => {
+      const colourMode = rootEl.classList.contains(DARK_THEME_CLASS)
+        ? DARK_THEME
+        : LIGHT_THEME;
       rootEl.classList.toggle(DARK_THEME_CLASS);
+      window.localStorage.setItem(COLOUR_MODE, colourMode);
     });
   }
 </script>
+
+<!-- search Markdown Pages to continue -->

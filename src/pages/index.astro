@@ -2,13 +2,20 @@
 // This area is called the "Component Script" section, sectioned off by the "Code Fence".
 
 import Main from "../layouts/Main.astro";
+import Cards from "../components/Cards.astro";
 
 const profilePicture =
   "https://images.squarespace-cdn.com/content/v1/5ab93b30e2ccd1ad66c6a6d6/1526077627930-ROUX8JGVBZAKQN1ZVNC2/most%2Binteresting%2Bman.jpg?format=1000w";
+
+const blogs = await Astro.glob<{
+  poster: string;
+  title: string;
+  subtitle: string;
+}>("../pages/blogs/*.md");
 ---
 
 <!-- This area is called the "Component Template" section. -->
-<Main>
+<Main title="Stay Thirsty">
   <div class="profile">
     <img
       class="profile-picture"
@@ -26,8 +33,41 @@ const profilePicture =
       </p>
     </div>
   </div>
+  <Cards
+    cards={[
+      {
+        title: "Here are my guiding philosophies for life",
+        gradientFrom: "#818cf8",
+        gradientTo: "#d8b4fe",
+        to: "/philosophies",
+      },
+      {
+        title: "A summary of my work history",
+        gradientFrom: "#fde68a",
+        gradientTo: "#fca5a5",
+        to: "/work-summary",
+      },
+      {
+        title: "What I do beyond technology",
+        gradientFrom: "#6ee7b7",
+        gradientTo: "#9333ea",
+        to: "/beyond-tech",
+      },
+    ]}
+  />
 </Main>
 
+<ol>
+  {
+    blogs.map((blog) => (
+      <li class="blogs__list">
+        <a href={blog.url} class="blog__link">
+          {blog.frontmatter.title}
+        </a>
+      </li>
+    ))
+  }
+</ol>
 <style>
   .profile {
     display: flex;
@@ -47,6 +87,6 @@ const profilePicture =
   .profile-picture {
     border-radius: 50%;
     margin: 0 2rem 1rem 0;
-    object-fit: cover;
+    object-fit: fill;
   }
 </style>
